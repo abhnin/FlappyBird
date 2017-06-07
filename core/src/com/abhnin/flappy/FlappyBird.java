@@ -9,6 +9,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class FlappyBird extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+	public static final int WIDTH = 400;
+	public static final int HEIGHT = 600;
+	public static final String TITLE = "Flappy Bird";
+
 	
 	@Override
 	public void create () {
