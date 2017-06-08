@@ -2,6 +2,7 @@ package com.abhnin.flappy.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
@@ -17,6 +18,7 @@ public class Tube {
     private static final int LOWEST_OPENING = 120;
     private Texture topTube;
     private Texture bottomTube;
+    private Rectangle boundsTop, boundsBottom;
 
     private Vector2 posTopTube, posBottomTube;
     private Random rand;
@@ -28,6 +30,9 @@ public class Tube {
 
         posTopTube = new Vector2(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENING );
         posBottomTube = new Vector2(x, posTopTube.y - TUBE_GAP - bottomTube.getHeight());
+
+        boundsTop = new Rectangle(getPosTopTube().x, getPosTopTube().y, topTube.getWidth(), topTube.getHeight());
+        boundsBottom =  new Rectangle(getPosBottomTube().x, getPosBottomTube().y, bottomTube.getWidth(), bottomTube.getHeight());
 
     }
 
@@ -50,5 +55,12 @@ public class Tube {
     public void reposition(float x) {
         posTopTube.set(x, rand.nextInt(FLUCTUATION) + TUBE_GAP + LOWEST_OPENING );
         posBottomTube.set(x, posTopTube.y - TUBE_GAP - bottomTube.getHeight());
+
+        boundsTop.setPosition(posTopTube.x, posTopTube.y);
+        boundsBottom.setPosition(posBottomTube.x, posBottomTube.y);
+    }
+
+    public boolean collides(Rectangle player) {
+        return player.overlaps(boundsTop) || player.overlaps(boundsBottom);
     }
 }
