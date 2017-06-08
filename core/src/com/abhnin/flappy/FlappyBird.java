@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class FlappyBird extends ApplicationAdapter {
 	public static final int WIDTH = 400;
-	public static final int HEIGHT = 600;
+	public static final int HEIGHT = 700;
 	public static final String TITLE = "Flappy Bird";
 
 	private GameStateManager gsm;
